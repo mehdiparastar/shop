@@ -42,7 +42,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
         <Container>
           <div style={{ float: 'right' }}>
             <Counters
@@ -50,7 +50,7 @@ class App extends Component {
               onIncrement={this.handleIncrement}
               onDelete={this.handleDelete}
             />
-            <br/>
+            <br />
             <Button color='success' className='btn-sm m-2' onClick={this.handleReset}>ریستارت</Button>
           </div>
         </Container>

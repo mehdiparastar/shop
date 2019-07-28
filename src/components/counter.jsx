@@ -6,6 +6,7 @@ import {
 
 
 class Counter extends Component {
+
     formatCount() {
         const { value } = this.props.counter
         return value === 0 ? 'صفر' : value
@@ -14,21 +15,27 @@ class Counter extends Component {
     getBadgeColor() {
         return this.props.counter.value === 0 ? 'warning' : 'primary'
     }
+
     render() {
+        const {
+            counter,
+            onDelete,
+            onIncrement
+        } = this.props
         return (
             <div>
                 <Badge color={this.getBadgeColor()} className='m-2'>{this.formatCount()}</Badge>
                 <Button
                     color='danger'
                     className='btn-sm m-2'
-                    onClick={() => this.props.onDelete(this.props.counter.id)}
+                    onClick={() => onDelete(counter.id)}
                 >
                     حذف
                 </Button>
                 <Button
                     color='primary'
                     className='btn-sm'
-                    onClick={() => this.props.onIncrement(this.props.counter)}
+                    onClick={() => onIncrement(counter)}
                 >
                     افزایش
                 </Button>
