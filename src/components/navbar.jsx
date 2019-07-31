@@ -1,5 +1,6 @@
 // import React, { Component } from 'react';
 import React from 'react'
+import {connect} from 'react-redux'
 
 import {
     Navbar,
@@ -7,20 +8,24 @@ import {
     Badge
 } from 'reactstrap'
 
-const NavBar = (props) => {
+const NavBar = ({totalCounters}) => {
     return (
         <div style={{ direction: 'rtl' }}>
             <Navbar color='dark' dark expand='md'>
                 <NavbarBrand href='/'>سبد خرید</NavbarBrand>
                 <Badge color='info' pill className='m-2'>
-                    {props.totalCounters}
+                    {totalCounters}
                 </Badge>
             </Navbar>
         </div>
     );
 }
 
-export default NavBar;
+export default connect(state=>{
+    return{
+        totalCounters:state.filter(c=>c.value>0).length
+    }
+})(NavBar);
 
 // class NavBar extends Component {
 //     render() {
